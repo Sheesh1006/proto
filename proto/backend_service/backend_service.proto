@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package backend_service;
+
+service BackendService {
+    rpc GetNotes(stream GetNotesRequest) returns(stream GetNotesResponse);
+}
+
+message GetNotesRequest {
+    bytes video = 1;
+    bytes presentation = 2;
+}
+
+message GetNotesResponse {
+    bytes notes = 1;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package chatgpt_service;
+
+service ChatGPTService {
+    rpc GetRawNotes(stream GetRawNotesRequest) returns(stream GetRawNotesResponse);
+}
+
+message GetRawNotesRequest {
+    bytes video = 1;
+    bytes presentation = 2;
+}
+
+message GetRawNotesResponse {
+    string raw_notes = 1;
+}
