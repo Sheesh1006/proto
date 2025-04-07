@@ -1,14 +1,8 @@
 services=("backend_service" "chatgpt_service")
-mkdir gen
+mkdir -p ./gen/{backend_service,chatgpt_service}
+python_flag() {
+  echo --python_out=./gen/$1 --pyi_out=./gen/$1 --grpc_python_out=./gen/$1;
+}
 for service in ${services[@]}; do
-  mkdir gen/$service
-  touch gen/$service/setup.py
-  mkdir gen/$service/$service
-  touch gen/$service/$service/__init__.py
-  proto="${service}.proto"
-  python -m grpc_tools.protoc \
-  --python_out=gen/$service/$service \
-  --grpc_python_out=gen/$service/$service \
-  --pyi_out=gen/$service/$service \
-  -I=proto/$service $proto
+  python -m grpc_tools.protoc -I proto proto/$service/*.proto  $(python_flag $service)
 done

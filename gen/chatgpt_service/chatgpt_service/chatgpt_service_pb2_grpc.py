@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import chatgpt_service_pb2 as chatgpt__service__pb2
+from chatgpt_service import chatgpt_service_pb2 as chatgpt__service_dot_chatgpt__service__pb2
 
 GRPC_GENERATED_VERSION = '1.71.0'
 GRPC_VERSION = grpc.__version__
@@ -18,7 +18,7 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in chatgpt_service_pb2_grpc.py depends on'
+        + f' but the generated code in chatgpt_service/chatgpt_service_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -36,8 +36,8 @@ class ChatGPTServiceStub(object):
         """
         self.GetRawNotes = channel.stream_stream(
                 '/chatgpt_service.ChatGPTService/GetRawNotes',
-                request_serializer=chatgpt__service__pb2.GetRawNotesRequest.SerializeToString,
-                response_deserializer=chatgpt__service__pb2.GetRawNotesResponse.FromString,
+                request_serializer=chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesRequest.SerializeToString,
+                response_deserializer=chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesResponse.FromString,
                 _registered_method=True)
 
 
@@ -55,8 +55,8 @@ def add_ChatGPTServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetRawNotes': grpc.stream_stream_rpc_method_handler(
                     servicer.GetRawNotes,
-                    request_deserializer=chatgpt__service__pb2.GetRawNotesRequest.FromString,
-                    response_serializer=chatgpt__service__pb2.GetRawNotesResponse.SerializeToString,
+                    request_deserializer=chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesRequest.FromString,
+                    response_serializer=chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -84,8 +84,8 @@ class ChatGPTService(object):
             request_iterator,
             target,
             '/chatgpt_service.ChatGPTService/GetRawNotes',
-            chatgpt__service__pb2.GetRawNotesRequest.SerializeToString,
-            chatgpt__service__pb2.GetRawNotesResponse.FromString,
+            chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesRequest.SerializeToString,
+            chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesResponse.FromString,
             options,
             channel_credentials,
             insecure,
