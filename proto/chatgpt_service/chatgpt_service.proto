@@ -4,6 +4,8 @@ package chatgpt_service;
 
 service ChatGPTService {
     rpc GetRawNotes(stream GetRawNotesRequest) returns(stream GetRawNotesResponse);
+    rpc GetTimestamps(GetTimestampsRequest) returns(stream GetTimestampsResponse);
+    rpc GetKeyFrames(GetKeyFramesRequest) returns(stream GetKeyFramesResponse);
 }
 
 message GetRawNotesRequest {
@@ -13,4 +15,20 @@ message GetRawNotesRequest {
 
 message GetRawNotesResponse {
     string raw_notes = 1;
+}
+
+message GetTimestampsRequest {
+
+}
+
+message GetTimestampsResponse {
+    string timestamps = 1;
+}
+
+message GetKeyFramesRequest {
+
+}
+
+message GetKeyFramesResponse {
+    repeated bytes keyframes = 1;
 }

@@ -39,12 +39,34 @@ class ChatGPTServiceStub(object):
                 request_serializer=chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesRequest.SerializeToString,
                 response_deserializer=chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesResponse.FromString,
                 _registered_method=True)
+        self.GetTimestamps = channel.unary_stream(
+                '/chatgpt_service.ChatGPTService/GetTimestamps',
+                request_serializer=chatgpt__service_dot_chatgpt__service__pb2.GetTimestampsRequest.SerializeToString,
+                response_deserializer=chatgpt__service_dot_chatgpt__service__pb2.GetTimestampsResponse.FromString,
+                _registered_method=True)
+        self.GetKeyFrames = channel.unary_stream(
+                '/chatgpt_service.ChatGPTService/GetKeyFrames',
+                request_serializer=chatgpt__service_dot_chatgpt__service__pb2.GetKeyFramesRequest.SerializeToString,
+                response_deserializer=chatgpt__service_dot_chatgpt__service__pb2.GetKeyFramesResponse.FromString,
+                _registered_method=True)
 
 
 class ChatGPTServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def GetRawNotes(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetTimestamps(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetKeyFrames(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -57,6 +79,16 @@ def add_ChatGPTServiceServicer_to_server(servicer, server):
                     servicer.GetRawNotes,
                     request_deserializer=chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesRequest.FromString,
                     response_serializer=chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesResponse.SerializeToString,
+            ),
+            'GetTimestamps': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetTimestamps,
+                    request_deserializer=chatgpt__service_dot_chatgpt__service__pb2.GetTimestampsRequest.FromString,
+                    response_serializer=chatgpt__service_dot_chatgpt__service__pb2.GetTimestampsResponse.SerializeToString,
+            ),
+            'GetKeyFrames': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetKeyFrames,
+                    request_deserializer=chatgpt__service_dot_chatgpt__service__pb2.GetKeyFramesRequest.FromString,
+                    response_serializer=chatgpt__service_dot_chatgpt__service__pb2.GetKeyFramesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -86,6 +118,60 @@ class ChatGPTService(object):
             '/chatgpt_service.ChatGPTService/GetRawNotes',
             chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesRequest.SerializeToString,
             chatgpt__service_dot_chatgpt__service__pb2.GetRawNotesResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetTimestamps(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/chatgpt_service.ChatGPTService/GetTimestamps',
+            chatgpt__service_dot_chatgpt__service__pb2.GetTimestampsRequest.SerializeToString,
+            chatgpt__service_dot_chatgpt__service__pb2.GetTimestampsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetKeyFrames(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/chatgpt_service.ChatGPTService/GetKeyFrames',
+            chatgpt__service_dot_chatgpt__service__pb2.GetKeyFramesRequest.SerializeToString,
+            chatgpt__service_dot_chatgpt__service__pb2.GetKeyFramesResponse.FromString,
             options,
             channel_credentials,
             insecure,
